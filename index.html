@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Angeles Mountains</title>
+    <link rel="preload" as="style" href="https://use.typekit.net/urn6jcl.css">
+    <style>
+        /*colors as implemented in reference lack strong contrast*/
+        :root {
+            --white: white;
+            --white-op: #ffffffbe;
+            --blue: #414f6b;
+            --blue-op: #414f6bc6;
+            --blue-footer: #63769d;
+            --font-black: #4d4d4d;
+            --black: black;
+            --grey: #b0b4be;
+        }
+
+        * {
+            margin: 0;
+        }
+
+        .lato-ital {
+            font-family: "lato", sans-serif;
+            font-weight: 400;
+            font-style: italic;
+        }
+        body, .lato {
+            font-family: "lato", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        .bebas-neue {
+            font-family: "bebas-neue-pro", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        .oswald {
+            font-family: "oswald", sans-serif;
+            font-weight: 600;
+            font-style: normal;
+        }
+        .blue {
+            color: var(--blue);
+        }
+        .white {
+            color: var(--white);
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: row;
+            color: var(--font-black);
+            gap: 8px;
+            align-items: center;
+            padding: 8px;
+        }
+        .logo .logo-keyword {
+            display: block;
+            color: var(--blue);
+        }
+        .hero {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background-image: url('./Image.png');
+            background-size: cover;
+        }
+        .nav-header ul {
+            list-style: none;
+            display: flex;
+            gap: 32px;
+        }
+        .nav-header nav ul li a {
+            color: var(--white);
+        }
+        .nav-header {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding-top: 4px;
+        }
+        :not(.nav-header) .off-nav li a {
+            color: var(--blue)
+        }
+
+        .section-title {
+            color: var(--blue);
+        }
+        .section-title-super {
+            font-size: 4em;
+            opacity: 50%;
+            vertical-align: sub;
+        }
+        .section-title-sub {
+            vertical-align: super;
+            position: relative;
+            top: -4px;
+            left: -24px;
+        }
+
+        .section-two-image {
+            background-image: url('./peak.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: top;
+            width: 100%;
+            aspect-ratio: 16/9;
+            min-height: 450px;
+            position: relative;
+        }
+        .section-summary {
+            width: 75%;
+            margin: 0 auto;
+        }
+        .section-summary p {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .fake-carousel {
+            position: absolute;
+            bottom: 0;
+            background-color: var(--blue-op);
+            width: 100%;
+            padding: 16px 0;
+            overflow: hidden;
+        }
+        .carousel-content {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+        .carousel-pos-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+        }
+        .carousel-pos-indicators div {
+            border-radius: 50%;
+            margin-top: 8px;
+            width: 0.5em;
+            height: 0.5em;
+            border-color: transparent;
+            background-color: var(--grey);
+        }
+        .carousel-pos-indicators .active {
+            background-color: var(--white);
+        }
+        .mountain-btns {
+            background-color: var(--blue);
+            height: 3em;
+        }
+        .mountain-btns-container {
+            width: 80%;
+            height: inherit;
+            margin: 0 auto;
+        }
+        .mountain-btns-container button {
+            background-color: transparent;
+            height: inherit;
+            border: none;
+            color: var(--grey);
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 0 21px;
+        }
+        .mountain-btns-container button.active {
+            background-color: var(--grey);
+            color: var(--blue);
+        }
+
+        .section-three-align {
+            display: flex;
+            align-items: center;
+        }
+        .section-three-image {
+            background-image: url('./photo-1417021423914-070979c8eb34.png');
+            background-size: contain;
+            background-position: center;
+            height: 100%;
+            aspect-ratio: 16/9;
+        }
+        .section-three-schedule {
+            position: relative;
+            top: 20%;
+            left: 10%;
+            background-color: var(--white-op);
+            width: fit-content;
+            text-align: left;
+            padding: 1.5em;
+        }
+        .section-three-schedule h3 {
+            color: var(--blue);
+        }
+        .section-three-schedule ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        footer {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: var(--blue);
+            color: var(--blue-footer);
+        }
+        footer .logo img {
+            opacity: 50%;
+        }
+        footer .logo,
+        footer .logo .logo-keyword {
+            color: var(--blue-footer);
+        }
+
+        .accordion {
+            display: none;
+        }
+
+        @media screen and (max-width: 576px) {
+            .accordion {
+                display: block;
+                float: right;
+                margin-left: 8px;
+                font-size: 2em;
+                height: 100%;
+                font-style: normal;
+                cursor: pointer;
+                background-color: transparent;
+                border: none;
+            }
+
+            nav,
+            .mountain-btns-container {
+                display: none;
+            }
+            .fake-carousel {
+                padding: 2px 0;
+            }
+            .section-title-super {
+                font-size: 2em;
+            }
+            .section-title-sub {
+                position: static;
+            }
+            .section-summary {
+                width: 100%;
+            }
+            .section-summary p {
+                width: 100%;
+            }
+            .section-three-align {
+                display: block;
+            }
+            .section-three-schedule {
+                position: static;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                width: 100%;
+                height: 100%;
+                padding: 0;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="nav-header lato-ital">
+            <img src="Logo.png" alt="Mountain logo">
+            <nav>
+                <ul>
+                    <li><a href="#one">01.HISTORY</a></li>
+                    <li><a href="#two">02.TEAM</a></li>
+                </ul>
+            </nav>
+            <button class="accordion white">V</button>
+        </div>
+    </section>
+    <section class="section-two">
+        <div class="nav-header lato-ital">
+            <div class="logo bebas-neue">
+                <p>
+                    <img src="Logo.png" alt="Mountain logo">
+                </p>
+                <h4>LOSANGELES<span class="logo-keyword">MOUNTAINS</span></h6>
+            </div>
+            <nav>
+                <ul class="off-nav">
+                    <li><a href="#one">01.HISTORY</a></li>
+                    <li><a href="#two">02.TEAM</a></li>
+                </ul>
+            </nav>
+            <button class="accordion blue">V</button>
+        </div>
+        <div class="section-two-image">
+            <div class="section-summary">
+                <h2 class="section-title"><span id="one" class="section-title-super oswald">01.</span><span class="section-title-sub">HISTORY</span></h2>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum quas quae repellat voluptas eius non fugit libero asperiores minima iusto sequi quod delectus, similique accusantium ab nobis nemo adipisci? Illo?</p>
+            </div>
+            <div class="fake-carousel">
+                <div class="carousel-content">
+                    <img src=".\Group 10 copy.png" alt="Mountain">
+                    <img src=".\Group 8 copy.png" alt="Climber atop rock">
+                    <img src=".\Group 10 copy.png" alt="Mountain">
+                    <img src=".\Group 8 copy.png" alt="Climber atop rock">
+                </div>
+                <div class="carousel-pos-indicators">
+                    <div class="active"></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-three">
+        <div class="section-summary section-three-align">
+            <h2 class="section-title"><span id="two" class="section-title-super oswald">02.</span><span class="section-title-sub">CLIMB</span></h2>
+            <p>Cras scelerisque id quam sed dignissim Pellentesque urna nunc, gravida quis hendrerit ac, tristique ut quam. Vivamus suscipit dignissim tortor nec congue.</p>
+        </div>
+        <div class="mountain-btns">
+            <div class="mountain-btns-container">
+                <button class="oswald active">MOUNTAIN 1</button>
+                <button class="oswald">MOUNTAIN 2</button>
+            </div>
+            <button class="accordion white">V</button>
+        </div>
+        <div class="section-three-image">
+            <div class="section-three-schedule">
+                <h3 class="oswald">SCHEDULE</h3>
+                <ul>
+                    <li>25 Nov 2016 Vestibulum viverra</li>
+                    <li>28 Nov 2016	Vestibulum viverra</li>
+                    <li>18 Dec 2016	Vestibulum viverra</li>
+                    <li>7 Jan 2017	Vestibulum viverra</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="logo bebas-neue">
+            <p>
+                <img src="Logo.png" alt="Mountain logo">
+            </p>
+            <h4>LOSANGELES<span class="logo-keyword">MOUNTAINS</span></h6>
+        </div>
+        <p>COPYRIGHT 2016. ALL RIGHTS RESERVED.</p>
+    </footer>
+</body>
+</html>
